@@ -1,0 +1,20 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": [
+    "The dependency policy for every rapture-sh repository.",
+    "A new release waits seven days before Renovate offers it, because a compromised package is usually found and pulled within that window and nothing here is urgent enough to be the first installer of anything.",
+    "A dependency with a published advisory skips that wait: vulnerabilityAlerts sets minimumReleaseAge to null, which is its default, written down so the next reader knows it is deliberate.",
+    "Dependabot is enabled on these repositories for alerts and security fixes only, with no dependabot.yml, so one bump never produces two pull requests.",
+    "Commits are fix: because these repositories accept only feat: and fix:."
+  ],
+  "extends": ["config:recommended", ":semanticCommitTypeAll(fix)"],
+  "minimumReleaseAge": "7 days",
+  "vulnerabilityAlerts": {
+    "minimumReleaseAge": null
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on monday"]
+  },
+  "prConcurrentLimit": 3
+}
